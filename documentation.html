@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="User guide for Smart Release Report: review Jira release issues and prepare release notes for Markdown, Slack, Teams, or Confluence.">
+  <title>Documentation - Smart Release Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172b4d;
+      --muted: #5e6c84;
+      --blue: #0052cc;
+      --border: #dfe1e6;
+      --surface: #f4f5f7;
+      --callout: #e9f2ff;
+      --warning: #fff7e6;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      padding: 32px 20px 48px;
+      color: var(--ink);
+      background: #fff;
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 3px solid #4c9aff; outline-offset: 3px; }
+
+    .page { width: min(100%, 880px); margin: 0 auto; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .brand img { width: 48px; height: 48px; object-fit: contain; }
+    .brand-name { color: var(--muted); font-size: 14px; font-weight: 650; }
+
+    h1 {
+      margin: 0;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+      color: var(--blue);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+    }
+
+    h2 { margin: 38px 0 12px; font-size: 1.45rem; line-height: 1.3; }
+    h3 { margin: 22px 0 8px; font-size: 1.08rem; }
+    p { margin: 10px 0; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 6px 0; }
+
+    .intro { max-width: 72ch; color: var(--muted); font-size: 1.1rem; }
+    .updated { margin: 12px 0 24px; color: var(--muted); font-size: .9rem; }
+
+    .callout {
+      margin: 22px 0;
+      padding: 16px 18px;
+      border: 1px solid #b3d4ff;
+      border-left: 4px solid var(--blue);
+      border-radius: 6px;
+      background: var(--callout);
+    }
+
+    .callout.warning {
+      border-color: #f5c36b;
+      border-left-color: #b45309;
+      background: var(--warning);
+    }
+
+    .toc {
+      margin: 28px 0;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fafbfc;
+    }
+
+    .toc h2 { margin: 0 0 8px; font-size: 1.1rem; }
+    .toc ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 4px 24px; margin: 0; padding-left: 18px; }
+
+    .steps { counter-reset: steps; list-style: none; padding: 0; }
+    .steps li {
+      position: relative;
+      min-height: 42px;
+      margin: 14px 0;
+      padding-left: 54px;
+      counter-increment: steps;
+    }
+    .steps li::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      content: counter(steps);
+      font-weight: 700;
+    }
+
+    .table-wrap { overflow-x: auto; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: 11px 12px; border: 1px solid var(--border); vertical-align: top; }
+    th { background: var(--surface); }
+
+    .tag {
+      display: inline-block;
+      padding: 1px 7px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fafbfc;
+      color: var(--ink);
+      font-size: .88em;
+      white-space: nowrap;
+    }
+
+    details {
+      margin: 10px 0;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    details[open] { background: #fafbfc; }
+    summary { cursor: pointer; font-weight: 650; }
+    summary:focus-visible { outline: 3px solid #4c9aff; outline-offset: 3px; }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 10px; }
+
+    @media (max-width: 560px) {
+      body { padding: 22px 16px 36px; }
+      .brand { margin-bottom: 20px; }
+      th, td { min-width: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="brand">
+      <img src="./release_report_logo.png" alt="">
+      <span class="brand-name">Smart Release Report</span>
+    </div>
+
+    <h1>Documentation</h1>
+    <p class="intro">Turn a Jira project version into release notes your customers and teams can understand. Review the issues, refine summaries, then copy the result or publish it to Confluence.</p>
+    <p class="updated"><strong>Last updated:</strong> October 2026</p>
+
+    <div class="callout">
+      <strong>Before you begin:</strong> Open Smart Release Report from a Jira project page. You need access to the Jira project and its release issues. To publish to Confluence, you also need access to the destination space and page.
+    </div>
+
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#quick-start">Quick start</a></li>
+        <li><a href="#review">Review issues and filters</a></li>
+        <li><a href="#summaries">Edit release summaries</a></li>
+        <li><a href="#exports">Export and publish</a></li>
+        <li><a href="#preferences">Saved preferences</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#limits">Current limits</a></li>
+      </ul>
+    </nav>
+
+    <section id="quick-start">
+      <h2>Quick start</h2>
+      <ol class="steps">
+        <li><strong>Open the app in a Jira project.</strong> The app detects the project from the page where it is opened.</li>
+        <li><strong>Choose a version.</strong> Select a project version from the release menu. Archived versions are not shown.</li>
+        <li><strong>Review the issues.</strong> Check the category, status, priority, and any technical-wording warning. Use the filters and sort controls to focus the list.</li>
+        <li><strong>Refine summaries if needed.</strong> Select <span class="tag">Edit summary</span>, make the release-note wording clear, and save.</li>
+        <li><strong>Choose an output.</strong> Open <span class="tag">Export</span> to preview and copy Markdown or Slack/Teams formatting, or publish a page to Confluence.</li>
+      </ol>
+    </section>
+
+    <section id="review">
+      <h2>Review issues and filters</h2>
+      <p>Issues are collected from the selected Jira version's <strong>Fix Version/s</strong> field. The app groups the review list into release categories based on Jira issue type:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Release category</th><th scope="col">Typical Jira issue types</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Features</strong></td><td>Story, New Feature, Epic</td></tr>
+            <tr><td><strong>Bug Fixes</strong></td><td>Bug, Defect, Incident</td></tr>
+            <tr><td><strong>Improvements</strong></td><td>Task, Improvement, Maintenance, Sub-task, and other or unrecognized types</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Use the category cards under <strong>Overview</strong> to show or hide each category. The category sections in the issue list can also be collapsed. Select an issue key to open the Jira issue.</p>
+
+      <h3>Technical wording</h3>
+      <p>The app looks for common technical signals in issue summaries, such as code-style identifiers, file extensions, exception names, and engineering terms. The <strong>Technical wording</strong> card shows how many visible issues are flagged. This is a lightweight heuristic, not an AI rewrite or a guarantee that wording is customer-ready.</p>
+      <p>Technical wording is included by default. Turn off its Overview filter to hide flagged issues from the review list and generated output. A warning does not block copying or publishing, so review flagged summaries before sharing.</p>
+
+      <h3>Internal work</h3>
+      <p>Issues whose summaries start with common engineering prefixes such as <code>chore:</code>, <code>refactor:</code>, <code>test:</code>, or <code>ci:</code> are identified as internal work and hidden by default. Use the <strong>Internal work</strong> card to include or hide them. This filter is independent of the technical-wording filter; an issue can match either, both, or neither.</p>
+
+      <h3>Sorting</h3>
+      <p>The issue list defaults to <strong>Requires Review</strong>, which brings technical-wording warnings forward. The <strong>Sort by</strong> menu also offers issue key, issue type, status, priority, and internal work. Use the adjacent direction button to switch between ascending and descending order.</p>
+    </section>
+
+    <section id="summaries">
+      <h2>Edit release summaries</h2>
+      <p>Editing a summary changes the wording used by Smart Release Report for that Jira issue and selected version; it does <strong>not</strong> edit the Jira issue itself. Changes are saved to Forge-hosted app storage and are used again when that issue is loaded for the same project and version.</p>
+      <p>After saving, review the issue again: changing its summary can affect its technical-wording warning and whether it is identified as internal work.</p>
+    </section>
+
+    <section id="exports">
+      <h2>Export and publish</h2>
+
+      <h3>Copy Markdown or Slack/Teams</h3>
+      <ol>
+        <li>Open <strong>Export</strong> and select <strong>Preview Markdown</strong> or <strong>Preview Slack/Teams</strong>.</li>
+        <li>Review the preview and any technical-wording notice.</li>
+        <li>Select the copy button in the preview to copy the formatted release notes to your clipboard.</li>
+      </ol>
+      <p>The generated content follows the selected category, technical-wording, and internal-work filters. The sort order is used for the output as well.</p>
+
+      <h3>Publish to Confluence</h3>
+      <ol>
+        <li>Open <strong>Export</strong>, then select <strong>Publish to Confluence</strong>.</li>
+        <li>Choose a space and, optionally, a parent page. Leave the parent unselected to create the release page at the space root.</li>
+        <li>Select <strong>Create release page</strong> and wait for the success message. Use its link to open the page.</li>
+      </ol>
+      <p>The new page title is the selected version name followed by “Release Notes.” If a page with that title already exists in the selected space, the app offers to update it instead. Confirm <strong>Update page</strong> (or <strong>Update and move page</strong> if you chose a different parent) to replace its release-note content; choose <strong>Cancel update</strong> to leave the existing page unchanged.</p>
+      <p>Confluence publishing uses your Atlassian access. If the Confluence space or pages do not load, ask your site administrator to verify your Confluence access and that the app is installed for Confluence on the same site as Jira.</p>
+    </section>
+
+    <section id="preferences">
+      <h2>Saved preferences and data</h2>
+      <ul>
+        <li><strong>Review preferences</strong>—selected version, sort order, category and wording filters, internal-work visibility, and Confluence destination—are saved in your browser for the Jira site and project.</li>
+        <li><strong>Edited summaries</strong> are saved in Forge-hosted app storage for the project, version, and issue.</li>
+        <li><strong>Generated release notes</strong> are prepared in your browser. They are sent to Confluence only when you choose to publish or update a page.</li>
+      </ul>
+      <p>For full details about permissions, data access, storage, and retention, see the <a href="./privacy_policy.html">Privacy Policy</a> and <a href="./data-policy.html">Data Access, Storage &amp; Retention</a>.</p>
+    </section>
+
+    <section id="troubleshooting">
+      <h2>Troubleshooting</h2>
+      <details>
+        <summary>The app asks me to open a Jira project</summary>
+        <p>Open Smart Release Report from a Jira project page. The app uses that page's project context to load versions and issues.</p>
+      </details>
+      <details>
+        <summary>No versions are available</summary>
+        <p>Create a version in the Jira project's settings, then retry the app. Archived versions are not included in the version selector.</p>
+      </details>
+      <details>
+        <summary>A version has no issues</summary>
+        <p>Check that the relevant Jira issues have the selected version in their <strong>Fix Version/s</strong> field. Also check the category and wording filters if issues are assigned but not visible.</p>
+      </details>
+      <details>
+        <summary>Jira or Confluence data fails to load</summary>
+        <p>Use the app's <strong>Retry</strong> control. If the issue continues, confirm your Jira project or Confluence space access with your site administrator. Confluence publishing additionally requires the app to be installed for Confluence on your site.</p>
+      </details>
+      <details>
+        <summary>Copying an export does not work</summary>
+        <p>Try the copy button again and allow clipboard access in your browser. If the problem continues, reopen the preview and retry.</p>
+      </details>
+    </section>
+
+    <section id="limits">
+      <h2>Current limits</h2>
+      <div class="callout warning">
+        <strong>Issue count:</strong> The current Jira query requests up to 100 matching issues for a selected version. If a release contains more than 100 issues, verify the complete issue list in Jira before relying on the generated notes.
+      </div>
+      <p>Issue categorization and technical/internal-work detection are rule-based. Review the output for accuracy and suitability before sharing it with customers or publishing it.</p>
+    </section>
+
+    <footer>
+      <p>Need help? Contact <a href="mailto:support@rnesselrath.atlassian.net">Antilles Codeworks support</a>.</p>
+      <nav class="footer-links" aria-label="Related information">
+        <a href="./documentation.html" aria-current="page">Documentation</a>
+        <a href="./privacy_policy.html">Privacy Policy</a>
+        <a href="./data-policy.html">Data Access, Storage &amp; Retention</a>
+        <a href="./security.html">Security Statement</a>
+      </nav>
+      <p>&copy; 2026 Antilles Codeworks.</p>
+    </footer>
+  </main>
+</body>
+</html>
