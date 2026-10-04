@@ -225,7 +225,7 @@
     <section id="summaries">
       <h2>Edit release summaries</h2>
       <p>Editing a summary changes the wording used by Smart Release Report for that Jira issue and selected version; it does <strong>not</strong> edit the Jira issue itself. Changes are saved to Forge-hosted app storage and are used again when that issue is loaded for the same project and version.</p>
-      <p>After saving, review the issue again: changing its summary can affect its technical-wording warning and whether it is identified as internal work.</p>
+      <p>When the issue is loaded again, the app checks the saved summary for technical wording and internal-work prefixes. Review those signals before sharing the release notes.</p>
     </section>
 
     <section id="exports">
