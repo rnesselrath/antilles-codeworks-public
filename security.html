@@ -31,47 +31,37 @@
   <p><strong>Last Updated:</strong> October 2026</p>
 
   <div class="highlight">
-    <strong>Security Summary:</strong> Release Report is an Atlassian Forge app. Its backend functions run on Forge, and its user interface runs in the browser within Jira. The app uses Jira and Confluence APIs as the current user and stores summary overrides in Forge-hosted storage. User preferences are stored in the browser's local storage. The app manifest does not declare an external backend or external network destinations.
+    <strong>Security Summary:</strong> Release Report is an Atlassian Forge app. Its backend functions run on Forge, and its user interface runs in the browser within Jira. The app uses Jira and Confluence APIs as the current user. The app manifest does not declare an external backend or external network destinations. For data categories, storage and retention, see the <a href="./privacy_policy.html">Privacy Policy</a>.
   </div>
 
-  <h2>1. Cloud Architecture & Infrastructure</h2>
-  <p>The app uses Atlassian Forge for its backend functions and Atlassian product APIs:</p>
+  <h2>1. Architecture & Access</h2>
+  <p>The app uses Atlassian Forge for backend functions and Atlassian product APIs:</p>
   <ul>
-    <li><strong>No declared external backend:</strong> The app manifest does not configure an external backend, analytics service, or external network destination. The app does use Forge-hosted storage for summary overrides.</li>
-    <li><strong>Forge backend:</strong> Backend functions run on Atlassian Forge. The app's user interface runs in the browser, so some data is processed there as part of the user's interaction.</li>
-    <li><strong>Product API access:</strong> The app accesses Jira and Confluence through Atlassian APIs using the current user's permissions.</li>
+    <li><strong>Platform:</strong> Backend functions run on Atlassian Forge. The user interface runs in the browser as part of Jira.</li>
+    <li><strong>API authorization:</strong> Jira and Confluence requests are made as the current user and are subject to that user's Atlassian permissions.</li>
+    <li><strong>External services:</strong> The current app manifest does not declare an external backend, external network destinations, or an analytics service. This statement reflects the current implementation and may change in a future version.</li>
   </ul>
 
-  <h2>2. Data Access & Permissions (Principle of Least Privilege)</h2>
-  <p>The app declares the following OAuth scopes in its manifest:</p>
+  <h2>2. Security Responsibilities</h2>
   <ul>
-    <li><code>read:jira-work</code>: Used to retrieve Jira project, version, and issue data for release notes.</li>
-    <li><code>read:space:confluence</code> and <code>read:page:confluence</code>: Used to retrieve Confluence spaces and pages for choosing a publishing destination.</li>
-    <li><code>write:page:confluence</code>: Used to create or update a Confluence page when the user requests publication.</li>
-    <li><code>storage:app</code>: Used to save and retrieve summary overrides in Forge-hosted storage.</li>
+    <li><strong>Platform infrastructure:</strong> Atlassian operates the Forge platform. Details about Forge security and storage are maintained in <a href="https://developer.atlassian.com/platform/forge/">Atlassian's Forge documentation</a>.</li>
+    <li><strong>App maintenance:</strong> The developer maintains the app source code and dependencies. Security-relevant updates should be reviewed and deployed by the developer.</li>
+    <li><strong>No security guarantee:</strong> This statement does not claim that every dependency is continuously audited, or that vulnerabilities cannot occur. It does not describe specific encryption or vulnerability-scanning controls.</li>
   </ul>
 
-  <h2>3. Data Storage & Encryption</h2>
-  <ul>
-    <li><strong>Summary overrides:</strong> User-edited issue summaries are stored using Forge-hosted Key-Value Store, scoped to the app installation.</li>
-    <li><strong>Preferences:</strong> Settings such as the selected version, sorting options, and Confluence destination are stored in the browser's local storage. They are not stored in Forge-hosted storage and may remain in the browser after the app is uninstalled.</li>
-    <li><strong>Data in use:</strong> Jira and Confluence data needed for the current workflow is returned to and processed by the app's browser interface. Users can copy generated release notes or request that the app publish them to Confluence.</li>
-    <li><strong>Credentials:</strong> The app does not ask users to provide passwords or API keys. Requests to Jira and Confluence use Atlassian's current-user authentication.</li>
-    <li><strong>Forge storage protection:</strong> Forge-hosted storage is provided and managed by Atlassian. Refer to Atlassian's <a href="https://developer.atlassian.com/platform/forge/storage-reference/">Forge storage documentation</a> for details about its storage and data lifecycle.</li>
-  </ul>
-
-  <h2>4. Vulnerability Management & Platform Updates</h2>
-  <p>Atlassian operates the Forge platform infrastructure. The app's source code and dependencies are maintained by its developer. This statement does not represent a guarantee that every dependency is continuously audited or that vulnerabilities cannot occur. Security-relevant updates to the app should be reviewed and deployed by the developer.</p>
-
-  <h2>5. Incident Response & Security Contact</h2>
-  <p>If you discover a potential security vulnerability or have security questions, please contact:</p>
+  <h2>3. Reporting a Security Concern</h2>
+  <p>If you discover a potential security vulnerability or have a security question, contact:</p>
   <ul>
     <li><strong>Security Contact Email:</strong> support@rnesselrath.atlassian.net</li>
     <li><strong>Developer / Company:</strong> Antilles Codeworks</li>
   </ul>
+  <p>For data handling, storage, retention or privacy requests, see the <a href="./privacy_policy.html">Privacy Policy</a> and <a href="./data-policy.html">Data Access, Storage &amp; Retention</a>.</p>
 
   <div class="footer">
-    <a href="./privacy_policy.html">Privacy Policy</a> | &copy; 2026 Antilles Codeworks. All rights reserved.
+    <a href="./privacy_policy.html">Privacy Policy</a> |
+    <a href="./data-policy.html">Data Access, Storage &amp; Retention</a> |
+    <a href="./security.html">Security Statement</a> |
+    &copy; 2026 Antilles Codeworks. All rights reserved.
   </div>
 
 </body>

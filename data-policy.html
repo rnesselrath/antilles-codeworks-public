@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Access, Storage & Retention - Release Report</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+      line-height: 1.6; 
+      color: #172B4D; 
+      max-width: 800px; 
+      margin: 40px auto; 
+      padding: 0 20px; 
+    }
+    h1 { color: #0052CC; border-bottom: 2px solid #EBECF0; padding-bottom: 10px; }
+    h2 { color: #172B4D; margin-top: 30px; }
+    code { background: #F4F5F7; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #EBECF0; font-size: 0.9em; color: #6B778C; }
+    a { color: #0052CC; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <h1>Data Access, Storage & Retention</h1>
+  <p><strong>App Name:</strong> Release Report (Jira Cloud App)</p>
+  <p><strong>Last Updated:</strong> October 2026</p>
+  <p>This page is a technical reference to the <a href="./privacy_policy.html">Privacy Policy</a>, which is the primary notice for data handling and privacy requests.</p>
+
+  <h2>1. Data Access & Processing</h2>
+  <p>Forge functions retrieve Jira data to help the current user review and prepare release notes. The app accesses:</p>
+  <ul>
+    <li><strong>Project and version data:</strong> Project names, keys and IDs, and version names, IDs and release status, so users can choose what to review.</li>
+    <li><strong>Issue data:</strong> Issue keys, summaries, issue types, statuses, priorities, components, labels, fix versions and project information. Where available, the app also reads the Jira team field and Jira field and priority metadata.</li>
+    <li><strong>Current-user access:</strong> Jira and Confluence API requests are made as the current user and are subject to that user's permissions.</li>
+  </ul>
+  <p>Forge functions read and write summary overrides and retrieve and normalize issue data. The app's browser interface processes the returned Jira data and release notes. When the user opens the Confluence publishing flow, the app can retrieve Confluence spaces and pages to select a destination. If the user requests publication or an update, it sends the release-note content to the selected Confluence page. The app does not ask users to provide passwords or API keys.</p>
+
+  <h2>2. Storage Locations</h2>
+  <p>The app uses Forge-hosted storage for summary overrides and browser storage for preferences:</p>
+  <ul>
+    <li><strong>Summary overrides:</strong> Replacement issue summaries entered in the app are stored in Forge-hosted Key-Value Store, associated with the app installation.</li>
+    <li><strong>Generated release notes:</strong> Release notes are prepared in the browser and are not separately stored by the app in Forge-hosted storage. If the user requests publication, the content is sent to the selected Confluence page.</li>
+    <li><strong>Preferences:</strong> Browser local storage holds preferences for the Jira site and project: selected version, sort field and order, selected issue categories, technical-issue and technical-wording filters, and selected Confluence space and parent page. These settings are not stored in Forge-hosted storage.</li>
+    <li><strong>External services:</strong> The current app manifest does not declare an external backend, external network destinations, or an analytics service. This describes the current implementation and may change in a future app version.</li>
+  </ul>
+
+  <h2>3. Retention & Deletion</h2>
+  <ul>
+    <li><strong>Individual overrides:</strong> The app currently provides no user-facing function to delete an individual stored override. Contact the developer through the <a href="./privacy_policy.html">Privacy Policy</a> to ask about deletion.</li>
+    <li><strong>Forge-hosted data after uninstall:</strong> Atlassian states that Forge-hosted data is retained for 60 days following the end of the billing or trial period after uninstall, unless the customer removes the app immediately and forfeits the remaining retention period. A reinstall is treated as a new installation; a request to relink to previous data may be made within 21 days of uninstall. See <a href="https://developer.atlassian.com/platform/forge/storage-reference/hosted-storage-data-lifecycle/">Atlassian's Forge storage data lifecycle</a> for current details.</li>
+    <li><strong>Browser preferences:</strong> Uninstalling the app does not remove preferences in browser local storage. Users can clear them through their browser's site-data settings.</li>
+  </ul>
+
+  <div class="footer">
+    <a href="./privacy_policy.html">Privacy Policy</a> |
+    <a href="./data-policy.html">Data Access, Storage &amp; Retention</a> |
+    <a href="./security.html">Security Statement</a> |
+    &copy; 2026 Antilles Codeworks. All rights reserved.
+  </div>
+
+</body>
+</html>
