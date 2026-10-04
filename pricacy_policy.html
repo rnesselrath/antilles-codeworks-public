@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Release Report (Jira App)</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+      line-height: 1.6; 
+      color: #172B4D; 
+      max-width: 800px; 
+      margin: 40px auto; 
+      padding: 0 20px; 
+    }
+    h1 { color: #0052CC; border-bottom: 2px solid #EBECF0; padding-bottom: 10px; }
+    h2 { color: #172B4D; margin-top: 30px; }
+    .logo { display: block; width: 88px; height: 88px; object-fit: contain; margin: 0 auto 20px; }
+    code { background: #F4F5F7; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #EBECF0; font-size: 0.9em; color: #6B778C; }
+  </style>
+</head>
+<body>
+
+  <img class="logo" src="release_report_logo.png" alt="Release Report logo">
+  <h1>Privacy Policy for Release Report</h1>
+  <p><strong>Last Updated:</strong> October 2026</p>
+
+  <h2>1. Overview</h2>
+  <p>Release Report ("the App") is an Atlassian Forge application that helps users select Jira project versions, review and format related issues as release notes, and optionally publish those notes to Confluence. This Privacy Policy explains how the App handles data when you use it.</p>
+
+  <h2>2. Architecture & Data Transfers</h2>
+  <p>The App is built on <strong>Atlassian Forge</strong>. In the version covered by this policy, the App uses Forge functions and Forge-hosted storage, and its manifest does not declare an external backend or external network destinations.</p>
+  <ul>
+    <li><strong>No third-party backend or analytics:</strong> The current version does not send App data to an external server or third-party analytics service. This describes the current implementation and may change if the App is updated.</li>
+    <li><strong>Atlassian APIs:</strong> The App requests Jira and, when used, Confluence data through Atlassian APIs as the current user. Forge-hosted storage is provided by Atlassian.</li>
+    <li><strong>Browser processing:</strong> Jira data and App settings are sent to or handled by the App's user interface in the browser. Therefore, data processing is not limited to Atlassian's server infrastructure. Users may also copy generated release notes or ask the App to publish them to Confluence.</li>
+  </ul>
+
+  <h2>3. Data Processed by the App</h2>
+  <p>To generate and manage release notes, the App may process the following information from Jira:</p>
+  <ul>
+    <li><strong>Project and version data:</strong> Project names, keys and IDs, and version names, IDs and release status, to let the user choose what to review.</li>
+    <li><strong>Issue data:</strong> Issue keys, summaries, issue types, statuses, priorities, components, labels, fix versions and project information. Where available, the App also reads the Jira team field. It also requests Jira field and priority metadata to support issue display and sorting.</li>
+    <li><strong>Summary overrides:</strong> Replacement issue summaries entered by a user in the App.</li>
+  </ul>
+  <p>When the user opens the Confluence publishing flow, the App can retrieve Confluence spaces and pages to let the user choose a destination. If the user requests publication or an update, the App sends the release-note content to the selected Confluence page or space.</p>
+
+  <h2>4. Personal Data (PII)</h2>
+  <p>The App does not request Jira user names, email addresses or IP addresses as issue fields for release-note generation. However, Jira issue summaries, labels, team-field values, or other content supplied to the App may contain personal information. The App may process that information in the browser and, for summary overrides, in Forge-hosted storage. The App does not send it to an external server in the current implementation. Users should avoid including personal information in release notes unless appropriate for their use case.</p>
+
+  <h2>5. Data Storage & Retention</h2>
+  <ul>
+    <li><strong>Summary overrides:</strong> User-edited summary overrides are stored in Forge-hosted Key-Value Store, associated with the App installation.</li>
+    <li><strong>App preferences:</strong> Preferences such as the selected version, sorting options and Confluence destination are stored in the browser's local storage. They are not stored in Forge-hosted storage. Browser data may remain after the App is uninstalled; users can clear it through their browser's site-data settings.</li>
+    <li><strong>Retention after uninstall:</strong> Atlassian's Forge storage documentation describes a retention and deletion lifecycle for hosted data after an App is uninstalled. The data may be retained for a limited period before permanent deletion; Atlassian currently documents a 28-day retention period for Forge-hosted storage after uninstall. Reinstalling the App does not automatically restore data from the previous installation.</li>
+  </ul>
+
+  <h2>6. Permissions (OAuth Scopes)</h2>
+  <p>The current App manifest requests the following scopes:</p>
+  <ul>
+    <li><code>read:jira-work</code>: To retrieve Jira project, version and issue data.</li>
+    <li><code>read:space:confluence</code> and <code>read:page:confluence</code>: To retrieve Confluence spaces and pages for destination selection.</li>
+    <li><code>write:page:confluence</code>: To create or update a Confluence page when the user requests publication.</li>
+    <li><code>storage:app</code>: To store and retrieve summary overrides using Forge-hosted storage.</li>
+  </ul>
+
+  <h2>7. GDPR Compliance</h2>
+  <p>The use of Atlassian Forge does not by itself establish compliance with the General Data Protection Regulation (GDPR) or other privacy laws. Whether and how those laws apply depends on the data and the circumstances in which the App is used. Customers are responsible for assessing their legal obligations and for ensuring that any personal information included in Jira content or release notes is handled appropriately.</p>
+
+  <h2>8. Contact Information</h2>
+  <p>If you have any questions regarding this Privacy Policy, please contact us at:</p>
+  <ul>
+    <li><strong>Email:</strong> support@rnesselrath.atlassian.net</li>
+    <li><strong>Developer/Company Name:</strong> Antilles Codeworks</li>
+  </ul>
+
+  <div class="footer">
+    &copy; 2026 Antilles Codeworks. All rights reserved.
+  </div>
+
+</body>
+</html>
