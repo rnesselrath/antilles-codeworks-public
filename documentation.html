@@ -164,7 +164,7 @@
 
     <h1>Documentation</h1>
     <p class="intro">Turn a Jira project version into release notes your customers and teams can understand. Review the issues, refine summaries, then copy the result or publish it to Confluence.</p>
-    <p class="updated"><strong>Last updated:</strong> October 2026</p>
+    <p class="updated"><strong>Last updated:</strong> November 2026</p>
 
     <div class="callout">
       <strong>Before you begin:</strong> Open Smart Release Report from a Jira project page. You need access to the Jira project and its release issues. To publish to Confluence, you also need access to the destination space and page.
@@ -188,15 +188,15 @@
       <ol class="steps">
         <li><strong>Open the app in a Jira project.</strong> The app detects the project from the page where it is opened.</li>
         <li><strong>Choose a version.</strong> Select a project version from the release menu. Archived versions are not shown.</li>
-        <li><strong>Review the issues.</strong> Check the category, status, priority, and any technical-wording warning. Use the filters and sort controls to focus the list.</li>
-        <li><strong>Refine summaries if needed.</strong> Select <span class="tag">Edit summary</span>, make the release-note wording clear, and save.</li>
+        <li><strong>Review the issues.</strong> Check category, status, priority, and review signals. Filter the visible list and adjust its sort order as needed.</li>
+        <li><strong>Refine the release content.</strong> Edit summaries, adjust a ticket's category or review signals, and include or exclude tickets from the report.</li>
         <li><strong>Choose an output.</strong> Open <span class="tag">Export</span> to preview and copy Markdown or Slack/Teams formatting, or publish a page to Confluence.</li>
       </ol>
     </section>
 
     <section id="review">
       <h2>Review issues and filters</h2>
-      <p>Issues are collected from the selected Jira version's <strong>Fix Version/s</strong> field. The app groups the review list into release categories based on Jira issue type:</p>
+      <p>Issues are collected from the selected Jira version's <strong>Fix Version/s</strong> field. By default, the app maps common Jira issue types to these release categories:</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -205,21 +205,27 @@
           <tbody>
             <tr><td><strong>Features</strong></td><td>Story, New Feature, Epic</td></tr>
             <tr><td><strong>Bug Fixes</strong></td><td>Bug, Defect, Incident</td></tr>
-            <tr><td><strong>Improvements</strong></td><td>Task, Improvement, Maintenance, Sub-task, and other or unrecognized types</td></tr>
+            <tr><td><strong>Improvements</strong></td><td>Task, Improvement, Enhancement, Maintenance, Sub-task, and other or unrecognized types</td></tr>
           </tbody>
         </table>
       </div>
-      <p>Use the category cards under <strong>Overview</strong> to show or hide each category. The category sections in the issue list can also be collapsed. Select an issue key to open the Jira issue.</p>
+      <p>Jira project administrators can change the categories and issue-type mappings in the project's <strong>Settings</strong> under <strong>Smart Release Report</strong>. Unmapped issue types use Improvements by default. Use the category filters, Jira label filters, and review-signal filters (Internal work, Technical wording, Unfinished, Included, and Excluded) to narrow the visible issue list. The filters do not change which tickets are included in an export. Category sections can be collapsed, and selecting an issue key opens that Jira issue.</p>
 
       <h3>Technical wording</h3>
-      <p>The app looks for common technical signals in issue summaries, such as code-style identifiers, file extensions, exception names, and engineering terms. The <strong>Technical wording</strong> card shows how many visible issues are flagged. This is a lightweight heuristic, not an AI rewrite or a guarantee that wording is customer-ready.</p>
-      <p>Technical wording is included by default. Turn off its Overview filter to hide flagged issues from the review list and generated output. A warning does not block copying or publishing, so review flagged summaries before sharing.</p>
+      <p>The app looks for common technical signals in issue summaries, such as code-style identifiers, file extensions, exception names, and engineering terms. The <strong>Technical wording</strong> filter shows how many loaded issues are flagged. This is a lightweight heuristic, not an AI rewrite or a guarantee that wording is customer-ready.</p>
+      <p>Select the <strong>Technical wording</strong> filter to show issues flagged by this check. The filter only changes the visible list; it does not remove issues from generated output. A warning does not block copying or publishing, so review flagged summaries before sharing.</p>
+
+      <h3>Unfinished tickets</h3>
+      <p>Issues in Jira's To Do and In Progress status categories show an <strong>Unfinished</strong> badge on their ticket card. The <strong>Unfinished</strong> signal also counts these issues; select it to focus the visible review list on them. Issues with an unknown status category are not counted. Export previews show a notice and the keys of unfinished tickets included in that output; the notice itself is not copied or published.</p>
 
       <h3>Internal work</h3>
-      <p>Issues whose summaries start with common engineering prefixes such as <code>chore:</code>, <code>refactor:</code>, <code>test:</code>, or <code>ci:</code> are identified as internal work and hidden by default. Use the <strong>Internal work</strong> card to include or hide them. This filter is independent of the technical-wording filter; an issue can match either, both, or neither.</p>
+      <p>Issues are identified as internal work when their summaries start with engineering prefixes such as <code>chore</code>, <code>refactor</code>, <code>test</code>, <code>ci</code>, <code>build</code>, <code>docs</code>, <code>style</code>, <code>perf</code>, or <code>revert</code> (with or without a colon), or when their issue type is configured as always internal in project settings. Internal issues remain visible in the review list but are excluded from release output by default. Select the <strong>Internal work</strong> filter to show those issues. You can still include an internal issue in the report using its inclusion control. Internal-work and technical-wording signals are independent; an issue can match either, both, or neither.</p>
 
       <h3>Sorting</h3>
-      <p>The issue list defaults to <strong>Requires Review</strong>, which brings technical-wording warnings forward. The <strong>Sort by</strong> menu also offers issue key, issue type, status, priority, and internal work. Use the adjacent direction button to switch between ascending and descending order.</p>
+      <p>The issue list defaults to <strong>Issue key</strong> in ascending order. The <strong>Sort by</strong> menu also offers issue type, status, and priority. Use the adjacent direction button to switch between ascending and descending order.</p>
+
+      <h3>Ticket-level decisions</h3>
+      <p>Use a ticket's options to set its release category, internal-work classification, or technical-wording warning to an explicit value, or return each setting to <strong>Automatic</strong>. These decisions apply to the selected project, version, and issue. Use the inclusion switch to keep a ticket in or remove it from the release report. The <strong>Include all visible</strong> and <strong>Exclude all visible</strong> actions apply to the currently visible tickets after you confirm.</p>
     </section>
 
     <section id="summaries">
@@ -237,7 +243,7 @@
         <li>Review the preview and any technical-wording notice.</li>
         <li>Select the copy button in the preview to copy the formatted release notes to your clipboard.</li>
       </ol>
-      <p>The generated content follows the selected category, technical-wording, and internal-work filters. The sort order is used for the output as well.</p>
+      <p>Generated content includes tickets marked for the release report and excludes tickets marked out. The visible-list filters (categories, labels, and review signals) do not affect the export; the selected sort order and configured category grouping do. Technical-wording and unfinished-ticket notices are shown in the preview when applicable, but the notices themselves are not copied into the release notes or published to Confluence.</p>
 
       <h3>Publish to Confluence</h3>
       <ol>
@@ -246,14 +252,14 @@
         <li>Select <strong>Create release page</strong> and wait for the success message. Use its link to open the page.</li>
       </ol>
       <p>The new page title is the selected version name followed by “Release Notes.” If a page with that title already exists in the selected space, the app offers to update it instead. Confirm <strong>Update page</strong> (or <strong>Update and move page</strong> if you chose a different parent) to replace its release-note content; choose <strong>Cancel update</strong> to leave the existing page unchanged.</p>
-      <p>Confluence publishing uses your Atlassian access. If the Confluence space or pages do not load, ask your site administrator to verify your Confluence access and that the app is installed for Confluence on the same site as Jira.</p>
+      <p>Confluence publishing uses your Atlassian access. If the Confluence space or pages do not load, ask your site administrator to verify your Confluence product access, permissions in the selected space, and the app's authorization or administrator-consent setup for Confluence on this site. If the issue continues, contact support with the exact error message.</p>
     </section>
 
     <section id="preferences">
       <h2>Saved preferences and data</h2>
       <ul>
-        <li><strong>Review preferences</strong>—selected version, sort order, category and wording filters, internal-work visibility, and Confluence destination—are saved in your browser for the Jira site and project.</li>
-        <li><strong>Edited summaries</strong> are saved in Forge-hosted app storage for the project, version, and issue.</li>
+        <li><strong>Review preferences</strong>—selected version, sort order, category, label and signal filters, and Confluence destination—are saved in your browser for the Jira site and project. Signal and label filters are restored for the version they were set on.</li>
+        <li><strong>Release decisions</strong>—edited summaries, ticket categories, internal-work and technical-wording overrides, and ticket inclusion—are saved in Forge-hosted app storage for the project, version, and issue.</li>
         <li><strong>Generated release notes</strong> are prepared in your browser. They are sent to Confluence only when you choose to publish or update a page.</li>
       </ul>
       <p>For full details about permissions, data access, storage, and retention, see the <a href="./privacy_policy.html">Privacy Policy</a> and <a href="./data-policy.html">Data Access, Storage &amp; Retention</a>.</p>
@@ -271,11 +277,11 @@
       </details>
       <details>
         <summary>A version has no issues</summary>
-        <p>Check that the relevant Jira issues have the selected version in their <strong>Fix Version/s</strong> field. Also check the category and wording filters if issues are assigned but not visible.</p>
+        <p>Check that the relevant Jira issues have the selected version in their <strong>Fix Version/s</strong> field. If issues are assigned but not visible, clear the category, label, and signal filters. If the export is empty, check whether all tickets have been excluded from the report.</p>
       </details>
       <details>
         <summary>Jira or Confluence data fails to load</summary>
-        <p>Use the app's <strong>Retry</strong> control. If the issue continues, confirm your Jira project or Confluence space access with your site administrator. Confluence publishing additionally requires the app to be installed for Confluence on your site.</p>
+        <p>Use the app's <strong>Retry</strong> control. If the issue continues, ask your site administrator to check your Jira project or Confluence space permissions and the app's authorization or administrator-consent setup for Confluence. Share the exact error with support if it persists.</p>
       </details>
       <details>
         <summary>Copying an export does not work</summary>
@@ -286,9 +292,9 @@
     <section id="limits">
       <h2>Current limits</h2>
       <div class="callout warning">
-        <strong>Issue count:</strong> The current Jira query requests up to 100 matching issues for a selected version. If a release contains more than 100 issues, verify the complete issue list in Jira before relying on the generated notes.
+        <strong>Large releases:</strong> Jira issues are requested in pages of up to 100, and the app follows Jira's pagination to load all matching issues. There is no fixed 100-issue total limit, but very large releases can take longer to load and use more memory.
       </div>
-      <p>Issue categorization and technical/internal-work detection are rule-based. Review the output for accuracy and suitability before sharing it with customers or publishing it.</p>
+      <p>The Confluence space picker currently loads up to 50 spaces. Project settings load up to 100 Jira issue types; projects with more issue types may not show every type for category mapping or internal-work rules. Issue categorization and technical/internal-work detection are rule-based. Review the output for accuracy and suitability before sharing it with customers or publishing it.</p>
     </section>
 
     <footer>

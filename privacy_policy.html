@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - Release Report (Jira App)</title>
+  <title>Privacy Policy - Smart Release Report (Jira App)</title>
   <style>
     body { 
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
@@ -24,14 +24,14 @@
 </head>
 <body>
 
-  <h1>Privacy Policy for Release Report</h1>
-  <p><strong>Last Updated:</strong> October 2026</p>
+  <h1>Privacy Policy for Smart Release Report</h1>
+  <p><strong>Last Updated:</strong> November 2026</p>
 
   <h2>1. Overview</h2>
-  <p>Release Report ("the App") is an Atlassian Forge application that helps users select Jira project versions, review and format related issues as release notes, and optionally publish those notes to Confluence. This is the App's primary privacy notice. The <a href="./data-policy.html">Data Access, Storage &amp; Retention</a> page provides a technical summary of the same data flows, and the <a href="./security.html">Security Statement</a> describes the App's security architecture and contact route.</p>
+  <p>Smart Release Report ("the App") is an Atlassian Forge application that helps users select Jira project versions, review and format related issues as release notes, and optionally publish those notes to Confluence. This is the App's primary privacy notice. The <a href="./data-policy.html">Data Access, Storage &amp; Retention</a> page provides a technical summary of the same data flows, and the <a href="./security.html">Security Statement</a> describes the App's security architecture and contact route.</p>
 
   <h2>2. Architecture & Data Transfers</h2>
-  <p>The App is built on <strong>Atlassian Forge</strong>. Forge functions make Jira and Confluence API requests as the current user and use Forge-hosted storage for summary overrides. The App's interface also processes data in the user's browser. In the version covered by this policy, the App manifest does not declare an external backend, external network destinations, or an analytics service.</p>
+  <p>The App is built on <strong>Atlassian Forge</strong>. Forge functions make Jira and Confluence API requests as the current user and use Forge-hosted storage for release decisions and project settings. The App's interface also processes data in the user's browser. In the version covered by this policy, the App manifest does not declare an external backend, external network destinations, or an analytics service.</p>
   <ul>
     <li><strong>Atlassian services:</strong> Jira and Confluence API requests are made as the current user and are subject to that user's Atlassian permissions. Forge-hosted storage is provided by Atlassian.</li>
     <li><strong>Browser processing:</strong> Jira data and preferences are handled by the App's browser interface. Users may copy generated release notes or request that the App publish them to Confluence.</li>
@@ -43,18 +43,20 @@
   <ul>
     <li><strong>Project and version data:</strong> Project names, keys and IDs, and version names, IDs and release status, to let the user choose what to review.</li>
     <li><strong>Issue data:</strong> Issue keys, summaries, issue types, statuses, priorities, components, labels, fix versions and project information. Where available, the App also reads the Jira team field. It requests field and priority metadata to support issue display and sorting.</li>
-    <li><strong>Summary overrides:</strong> Replacement issue summaries entered by a user. These are stored in Forge-hosted Key-Value Store as described below.</li>
+    <li><strong>Release decisions:</strong> User-edited summaries, per-issue category overrides, Internal work and Technical wording overrides, and Include/Exclude decisions. These are stored in Forge-hosted Key-Value Store as described below.</li>
+    <li><strong>Project settings:</strong> Configured release categories, issue-type mappings, and issue types marked as always internal. These settings are stored for the Jira project in Forge-hosted Key-Value Store.</li>
   </ul>
   <p>When a user opens the Confluence publishing flow, the App can retrieve Confluence spaces and pages to let the user choose a destination. If the user requests publication or an update, the App sends the release-note content to the selected Confluence page.</p>
 
   <h2>4. Personal Information</h2>
-  <p>The App does not request Jira user names, email addresses or IP addresses as fields for release-note generation. Jira issue summaries, labels, team-field values, overrides, or other Jira content may nevertheless contain personal information. Such content may be processed in the browser and, for summary overrides, in Forge-hosted storage. The App's current implementation does not declare an external backend or external network destination. Users should avoid including personal information in release notes unless appropriate for their use case.</p>
+  <p>The App does not request Jira user names, email addresses or IP addresses as fields for release-note generation. Jira issue summaries, labels, team-field values, overrides, or other Jira content may nevertheless contain personal information. Such content may be processed in the browser and, when included in an app-stored release decision or project setting, in Forge-hosted storage. The App's current implementation does not declare an external backend or external network destination. Users should avoid including personal information in release notes unless appropriate for their use case.</p>
 
   <h2>5. Data Storage & Retention</h2>
   <ul>
-    <li><strong>Summary overrides:</strong> User-edited issue summaries are stored in Forge-hosted Key-Value Store, associated with the App installation. The App currently has no user-facing function to delete an individual override. To ask about deletion of Forge-hosted overrides, contact the developer using the details below.</li>
+    <li><strong>Release decisions and project settings:</strong> Edited summaries, per-issue category, Internal work, Technical wording and Include/Exclude decisions, and project-level category and issue-type configuration are stored in Forge-hosted Key-Value Store. Issue decisions are scoped to the relevant project and release; project settings are scoped to the project.</li>
+    <li><strong>Deletion controls:</strong> Users can reset a saved summary to the Jira summary and return category, Internal work, or Technical wording overrides to Automatic; these actions remove the corresponding override from Forge-hosted storage. Include/Exclude decisions can be changed, but the App currently has no separate action to reset that decision to its default. Contact the developer using the details below for deletion requests concerning remaining app-stored data or project settings.</li>
     <li><strong>Generated release notes:</strong> Release notes are prepared in the browser and are not separately stored by the App in Forge-hosted storage. If a user requests publication, the content is sent to the selected Confluence page and is then subject to the customer's Confluence configuration and applicable Atlassian terms.</li>
-    <li><strong>App preferences:</strong> The browser's local storage holds preferences for the Jira site and project, including the selected version, sort field and order, issue categories, technical-issue and technical-wording filters, and the selected Confluence space and parent page. These preferences are not stored in Forge-hosted storage and are not deleted when the App is uninstalled. Users can clear them through their browser's site-data settings.</li>
+    <li><strong>App preferences:</strong> The browser's local storage holds preferences for the Jira site and project, including the selected version, sort field and order, category, label and review-signal filters, and the selected Confluence space and parent page. Label and signal filters are associated with the version they were set on. These preferences are not stored in Forge-hosted storage and are not deleted when the App is uninstalled. Users can clear them through their browser's site-data settings.</li>
     <li><strong>Uninstallation:</strong> Atlassian states that Forge-hosted data is retained for 60 days following the end of the billing or trial period after uninstall, unless the customer removes the App immediately and forfeits the remaining retention period. A reinstall is treated as a new installation; a request to relink to the previous data may be made within 21 days of uninstall. See <a href="https://developer.atlassian.com/platform/forge/storage-reference/hosted-storage-data-lifecycle/">Atlassian's Forge storage data lifecycle</a> for current details.</li>
   </ul>
 
@@ -64,11 +66,11 @@
     <li><code>read:jira-work</code>: To retrieve Jira project, version and issue data.</li>
     <li><code>read:space:confluence</code> and <code>read:page:confluence</code>: To retrieve Confluence spaces and pages for destination selection.</li>
     <li><code>write:page:confluence</code>: To create or update a Confluence page when the user requests publication.</li>
-    <li><code>storage:app</code>: To store and retrieve summary overrides using Forge-hosted storage.</li>
+    <li><code>storage:app</code>: To store and retrieve release decisions and project settings using Forge-hosted storage.</li>
   </ul>
 
   <h2>7. Privacy Requests & Applicable Law</h2>
-  <p>For questions or requests concerning summary overrides held by the App, contact the developer using the details below. Jira data and published Confluence content remain subject to the customer's Atlassian configuration and applicable Atlassian terms. The use of Atlassian Forge does not by itself establish compliance with the General Data Protection Regulation (GDPR) or other privacy laws. The customer and developer should assess their respective obligations based on the data and circumstances in which the App is used. Users should ensure that personal information included in Jira content or release notes is handled appropriately.</p>
+  <p>For questions or requests concerning app-stored release data or project settings, contact the developer using the details below. Jira data and published Confluence content remain subject to the customer's Atlassian configuration and applicable Atlassian terms. The use of Atlassian Forge does not by itself establish compliance with the General Data Protection Regulation (GDPR) or other privacy laws. The customer and developer should assess their respective obligations based on the data and circumstances in which the App is used. Users should ensure that personal information included in Jira content or release notes is handled appropriately.</p>
   <p>This notice does not specify a legal basis, a postal address, or a jurisdiction-specific complaints process. Those details depend on the publisher's legal identity and operating circumstances and should be confirmed by the publisher before relying on this notice for legal compliance.</p>
 
   <h2>8. Contact Information</h2>
